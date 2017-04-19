@@ -74,7 +74,7 @@ defmodule DiscordEx.Client.Helpers.MessageHelper do
   """
   @spec msg_command_parse(map) :: {String.t, String.t}
   def msg_command_parse(payload) do
-    cmd = case Regex.scan(~r/!(.\w*:\w*:\w*|.\w*:\w*|.\w*){1}/, payload.data["content"]) do
+    cmd = case Regex.scan(~r/^!(.\w*:\w*:\w*|.\w*:\w*|.\w*){1}/, payload.data["content"]) do
             []     -> nil
             result -> result |> List.last |> List.last
           end
